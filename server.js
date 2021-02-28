@@ -29,9 +29,7 @@ app.post('/users', (req, res) => {
   // User.create()
 
   User.create({
-    name: req.body.newUser.name,
-    email: req.body.newUser.email,
-    password: req.body.newUser.password
+    ...req.body.newUser
   }, (err, data) => {
     response(res, err, data)
   }
@@ -51,9 +49,7 @@ app.route('/users/:id')
   .put((req, res) => {
     // User.findByIdAndUpdate()
     User.findByIdAndUpdate(req.params.id, {
-      name: req.body.newUser.name,
-      email: req.body.newUser.email,
-      password: req.body.newUser.password
+      ...req.body.newUser
     }, { new: true }, (err, data) => {
       response(res, err, data)
     }
